@@ -1,41 +1,9 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = Layout;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-    
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="~/">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/a-propos">A propos</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
-    <div class="container">
         <h1>Accueil</h1>
-        <!-- Commentaire / apparait coté client -->
-        @* Commentaire razor / n'apparait pas coté client *@
-        <p>
+        @*<p>
             <a href="~/a-propos">A propos</a>
             <br />
             @Html.ActionLink("A propos", "about", "Home")
@@ -43,11 +11,4 @@
             <a href="@Url.Action("About", "Home")">A propos</a>
             <br />
             <a href="@Url.RouteUrl("AboutRoute")">A propos</a>
-        </p>
-    </div>
-
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
-    <script src="~/Scripts/popper.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
-</html>
+        </p>*@
