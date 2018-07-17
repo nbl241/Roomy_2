@@ -9,11 +9,13 @@ namespace Roomy.Data
 {
     public class RoomyDbContext : DbContext
     {
-        public RoomyDbContext() : base("Roomy")
+        public RoomyDbContext() : base("Roomydb")
         {
 
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Civility> Civilities { get; set; }
     }
 }
