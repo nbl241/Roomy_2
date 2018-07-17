@@ -1,14 +1,13 @@
 ﻿@model Roomy.Models.User
 
 @{
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
     ViewBag.Title = "Create";
 }
 
-<h2>Nouvel utilisateur</h2>
-
-<div class="row ">
-    <div class="col-md-6">
-
+@section SectionTitle{
+    <h2>Nouvel utilisateur</h2>
+}
         @using (Html.BeginForm("Create", "Users", System.Web.Mvc.FormMethod.Post))
         {
             <div class="form-group">
@@ -45,7 +44,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(x => x.ConfirmedPassword)
-                @Html.EditorFor(x => x.ConfirmedPassword, null, new { htmlAttributes = new { @class = "form-control" } })        
+                @Html.EditorFor(x => x.ConfirmedPassword, null, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(x => x.ConfirmedPassword, "", new { @class = "text-danger" })
             </div>
 
@@ -53,5 +52,3 @@
                 <button type="submit" class="btn btn-dark">enregistrer</button>
             </div>
         }
-    </div>
-</div>

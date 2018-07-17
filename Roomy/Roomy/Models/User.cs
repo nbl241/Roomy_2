@@ -31,6 +31,7 @@ namespace Roomy.Models
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
+        [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{6,}$",
             ErrorMessage = "{0} incorrect.")]

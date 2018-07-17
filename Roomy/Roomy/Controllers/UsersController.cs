@@ -21,7 +21,8 @@ namespace Roomy.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                //Enregistrer en bd
+                //Redirection
             }
 
             return View();
