@@ -22,7 +22,7 @@ namespace Roomy.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]
-        [Major (ErrorMessage = "Attention, vous devez être majeur !!!")]
+        [Major (18, ErrorMessage = "Attention, vous devez avoir 18ans !!!")]
         public DateTime Birthdate { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
@@ -31,6 +31,7 @@ namespace Roomy.Models
                            @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                            @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
             ErrorMessage = "L'adresse mail n'est pas au bon format")]
+        [ExistingMailUser(ErrorMessage = "Le mail existe déjà.")]
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
