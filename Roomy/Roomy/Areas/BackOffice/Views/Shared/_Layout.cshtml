@@ -7,37 +7,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Roomy | @ViewBag.Title</title>
+    <title>BackOffice | @ViewBag.Title</title>
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/roomy.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <h1>BackOffice</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home", new { area="" })">App <span class="sr-only">Current</span></a>
+                    </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="~/">Accueil <span class="sr-only">Current</span></a>
+                        <a class="nav-link" href="@Url.Action("Index", "BackOffice")">BackOffice <span class="sr-only">Current</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.RouteUrl("AboutRoute")">A propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Create", "Users")">Nouvel utilisateur</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area="BackOffice" })">BO</a>
-                    </li>
+
                 </ul>
             </div>
         </nav>
 
         @RenderBody()
-        <footer class="bg-primary">
+        <footer class="bg-info">
             &copy; POEC Rouen 2018
         </footer>
     </div>
