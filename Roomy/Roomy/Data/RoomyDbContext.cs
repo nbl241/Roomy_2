@@ -1,4 +1,5 @@
-﻿using Roomy.Models;
+﻿using Roomy.Areas.BackOffice.Models;
+using Roomy.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,5 +20,7 @@ namespace Roomy.Data
         public DbSet<Civility> Civilities { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
