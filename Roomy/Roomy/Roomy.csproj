@@ -370,6 +370,10 @@
     <Compile Include="Migrations\201807191451394_ModifLibelléCategoryModel.Designer.cs">
       <DependentUpon>201807191451394_ModifLibelléCategoryModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807200833007_AddRoomFile.cs" />
+    <Compile Include="Migrations\201807200833007_AddRoomFile.Designer.cs">
+      <DependentUpon>201807200833007_AddRoomFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
@@ -390,6 +394,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Civility.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extensions.cs" />
@@ -451,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807191451394_ModifLibelléCategoryModel.resx">
       <DependentUpon>201807191451394_ModifLibelléCategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807200833007_AddRoomFile.resx">
+      <DependentUpon>201807200833007_AddRoomFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

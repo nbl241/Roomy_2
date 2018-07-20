@@ -30,7 +30,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Room room = db.Rooms.Find(id);
-            Room room = db.Rooms.Include(x => x.User).SingleOrDefault(x => x.ID == id);
+            Room room = db.Rooms.Include(x => x.User).Include(x => x.Category).SingleOrDefault(x => x.ID == id);
             if (room == null)
             {
                 return HttpNotFound();
