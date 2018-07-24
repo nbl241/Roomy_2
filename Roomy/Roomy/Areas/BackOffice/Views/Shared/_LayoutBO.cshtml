@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    var user = Session["USER_BO"] as Roomy.Models.User;
 }
 
 <!DOCTYPE html>
@@ -49,6 +50,9 @@
                         </div>
                     </li>
                 </ul>
+                <span class="navbar-text">
+                Bonjour @user.Lastname @user.Firstname<a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
+                </span>
             </div>
         </nav>
 

@@ -8,10 +8,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Roomy.Data;
+using Roomy.Filters;
 using Roomy.Models;
 
 namespace Roomy.Areas.BackOffice.Controllers
 {
+    [AuthenticationFilter]
     public class RoomsController : Controller
     {
         private RoomyDbContext db = new RoomyDbContext();
@@ -53,7 +55,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Exclure = "Price")] Room room)
-        public ActionResult Create([Bind(Include = "ID,Name,Capacité,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
+        public ActionResult Create([Bind(Include = "ID,Name,Capacite,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +91,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Capacité,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
+        public ActionResult Edit([Bind(Include = "ID,Name,Capacite,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +100,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname", room.UserID);
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Lastname", room.CategoryID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", room.CategoryID);
             return View(room);
         }
 
