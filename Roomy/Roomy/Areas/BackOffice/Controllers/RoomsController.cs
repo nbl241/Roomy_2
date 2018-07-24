@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Roomy.Controllers;
 using Roomy.Data;
 using Roomy.Filters;
 using Roomy.Models;
@@ -14,10 +15,8 @@ using Roomy.Models;
 namespace Roomy.Areas.BackOffice.Controllers
 {
     [AuthenticationFilter]
-    public class RoomsController : Controller
+    public class RoomsController : BaseController
     {
-        private RoomyDbContext db = new RoomyDbContext();
-
         // GET: BackOffice/Rooms
         public ActionResult Index()
         {
@@ -91,8 +90,11 @@ namespace Roomy.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Capacite,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
+        public ActionResult Edit([Bind(Include = "ID,Name,Capacite,Price,Description,UserID,CategoryID")] Room room)
         {
+            var old = db.Rooms.SingleOrDefault(x => x.ID == room.ID);
+            room.CreatedAt = old.CreatedAt;
+            db.Entry(old).State = EntityState.Detached;
             if (ModelState.IsValid)
             {
                 db.Entry(room).State = EntityState.Modified;
@@ -166,15 +168,6 @@ namespace Roomy.Areas.BackOffice.Controllers
             db.RoomFiles.Remove(file);
             db.SaveChanges();
             return Json("OK");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

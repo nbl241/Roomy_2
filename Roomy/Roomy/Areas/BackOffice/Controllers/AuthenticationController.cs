@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Roomy.Utils;
 using Roomy.Filters;
+using Roomy.Controllers;
 
 namespace Roomy.Areas.BackOffice.Controllers
 {

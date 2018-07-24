@@ -7,16 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Roomy.Areas.BackOffice.Models;
+using Roomy.Controllers;
 using Roomy.Data;
 using Roomy.Filters;
 
 namespace Roomy.Areas.BackOffice.Controllers
 {
     [AuthenticationFilter]
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
-        private RoomyDbContext db = new RoomyDbContext();
-
         // GET: BackOffice/Categories
         public ActionResult Index()
         {
@@ -55,6 +54,7 @@ namespace Roomy.Areas.BackOffice.Controllers
             {
                 db.Categories.Add(category);
                 db.SaveChanges();
+                DisplayMessage("Catégorie enrigistrée", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -116,15 +116,6 @@ namespace Roomy.Areas.BackOffice.Controllers
             db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
