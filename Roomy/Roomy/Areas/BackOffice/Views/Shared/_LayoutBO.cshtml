@@ -56,12 +56,7 @@
             </div>
         </nav>
 
-        @if(TempData["Message"] != null)
-        {
-            <div class="alert alert-@TempData["MessageType"].ToString()">
-                @TempData["MEssage"].ToString()
-            </div>
-        }
+        @Html.Partial("_DisplayMessage")
 
         @RenderBody()
         <footer class="bg-info">

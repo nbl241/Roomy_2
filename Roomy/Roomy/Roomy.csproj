@@ -376,6 +376,7 @@
     <Compile Include="Areas\BackOffice\Controllers\RoomsController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filters\AuthenticationFilter.cs" />
     <Compile Include="Migrations\201807191446487_Modif2.cs" />
     <Compile Include="Migrations\201807191446487_Modif2.Designer.cs">
@@ -433,6 +434,8 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Shared\_TopFive.cshtml" />
+    <Content Include="Views\Shared\_DisplayMessage.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
