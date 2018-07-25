@@ -5,18 +5,18 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Roomy.Controllers;
 using Roomy.Data;
+using Roomy.Filters;
 using Roomy.Models;
 
 namespace Roomy.Areas.BackOffice.Controllers
 {
-    public class RoomsController : Controller
+    [AuthenticationFilter]
+    public class RoomsController : BaseController
     {
-        private RoomyDbContext db = new RoomyDbContext();
-
         // GET: BackOffice/Rooms
         public ActionResult Index()
         {
@@ -54,7 +54,7 @@ namespace Roomy.Areas.BackOffice.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Exclure = "Price")] Room room)
-        public ActionResult Create([Bind(Include = "ID,Name,Capacité,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
+        public ActionResult Create([Bind(Include = "ID,Name,Capacite,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -90,8 +90,11 @@ namespace Roomy.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Capacité,Price,Description,CreatedAt,UserID,CategoryID")] Room room)
+        public ActionResult Edit([Bind(Include = "ID,Name,Capacite,Price,Description,UserID,CategoryID")] Room room)
         {
+            var old = db.Rooms.SingleOrDefault(x => x.ID == room.ID);
+            room.CreatedAt = old.CreatedAt;
+            db.Entry(old).State = EntityState.Detached;
             if (ModelState.IsValid)
             {
                 db.Entry(room).State = EntityState.Modified;
@@ -99,7 +102,7 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.UserID = new SelectList(db.Users, "ID", "Lastname", room.UserID);
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Lastname", room.CategoryID);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", room.CategoryID);
             return View(room);
         }
 
@@ -155,23 +158,16 @@ namespace Roomy.Areas.BackOffice.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveFile(int id)
+        public ActionResult DeleteFile(int id)
         {
-            var roomFile = db.RoomFiles.Find(id);
-            if (roomFile == null)
-                return HttpNotFound();
-            db.RoomFiles.Remove(roomFile);
-
-            db.SaveChanges();
-            return Json(roomFile);
-        }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            var file = db.RoomFiles.Find(id);
+            if (file == null)
             {
-                db.Dispose();
+                return HttpNotFound("Le fichier demandé n'existe pas.");
             }
-            base.Dispose(disposing);
+            db.RoomFiles.Remove(file);
+            db.SaveChanges();
+            return Json("OK");
         }
     }
 }
