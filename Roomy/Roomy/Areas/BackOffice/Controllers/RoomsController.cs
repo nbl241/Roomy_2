@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Roomy.Data;
@@ -153,6 +154,17 @@ namespace Roomy.Areas.BackOffice.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
+        public ActionResult RemoveFile(int id)
+        {
+            var roomFile = db.RoomFiles.Find(id);
+            if (roomFile == null)
+                return HttpNotFound();
+            db.RoomFiles.Remove(roomFile);
+
+            db.SaveChanges();
+            return Json(roomFile);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

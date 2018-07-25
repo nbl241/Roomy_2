@@ -87,7 +87,7 @@
     {
         <div class="col-md-3">
             <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @Convert.ToBase64String(file.Content)" />
-            <p>@file.Name <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a></p>
+            <p>@file.Name <a actions="@Url.Action("DeleteFile", "Rooms")" class="btn btn-danger"><i class="fa fa-remove"></i></a></p>
         </div>
     }
 </div>
